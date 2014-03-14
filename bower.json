@@ -1,0 +1,19 @@
+{
+  "name": "database",
+  "main": "built/database.js",
+  "version": "0.0.0",
+  "description": "Some module...",
+  "dependencies": {
+    "backbone.collection.queryable": "*",
+    "backbone.collection.multisort": "*",
+    "backbone.collection.lazy": "*",
+    "lowercase-backbone": "*"
+  },
+  "devDependencies": {
+    "requirejs": "*",
+    "requirejs-text": "*",
+    "underscore": "*",
+    "jquery": "*",
+    "qunit": "*"
+  }
+}
