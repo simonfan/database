@@ -1,3 +1,7 @@
+/* jshint ignore:start */
+if (typeof define !== 'function') { var define = require('amdefine')(module) }
+/* jshint ignore:end */
+
 define(function (require, exports, module) {
 	'use strict';
 
@@ -28,9 +32,10 @@ define(function (require, exports, module) {
 		}
 	};
 
+
 	// simplifying partials.
-	exports.skip = _.partial(query.prototype.meta, 'skip');
-	exports.limit = _.partial(query.prototype.meta, 'limit');
+	exports.skip = _.partial(exports.meta, 'skip');
+	exports.limit = _.partial(exports.meta, 'limit');
 
 
 	/**

@@ -7,6 +7,9 @@
  *
  * @module database
  */
+/* jshint ignore:start */
+if (typeof define !== 'function') { var define = require('amdefine')(module) }
+/* jshint ignore:end */
 
 define(function (require, exports, module) {
 	'use strict';
@@ -14,45 +17,51 @@ define(function (require, exports, module) {
 	// external
 	var Queryable = require('backbone.collection.queryable'),
 		Multisort = require('backbone.collection.multisort'),
-		backbone = require('lowercase-backbone');
+		LazyCollection = require('backbone.collection.lazy'),
+		backbone = require('lowercase-backbone'),
+		_ = require('lodash');
 
 	// internal
-	var queryObject = require('./__database/query/index');
+	var queryObject = require('./__database/query-object/index');
 
 	// object
-	var database = module.exports = backbone.collection.extend(function database(models, options) {
-
-
-		backbone.collection.prototype.initialize.apply(this, arguments);
-	});
-
-	// multisortable.
-	database.proto(Multisort.prototype);
-
-	// extend Queryable.
-	database.proto(Queryable.prototype);
-	// modify query method, as it will be used in another meaning.
-	database.proto({
-		clientQuery: Queryable.prototype.query,
-	});
-
-
-
-	database.proto(require(''))
-
-
-
+	var database = module.exports =
+		backbone.collection
+			// LazyCollection is required by Queryable.
+			// but as we are using lowercase-backbone, we must extend everybody again.
+			.extend(LazyCollection.prototype)
+			.extend(Multisort.prototype)
+			.extend(Queryable.prototype);
 
 	database.proto({
 
+		initialize: function initializeDatabase(models, options) {
+			backbone.collection.prototype.initialize.apply(this, arguments);
+			LazyCollection.prototype.initialize.apply(this, arguments);
+			Multisort.prototype.initialize.apply(this, arguments);
+			Queryable.prototype.initialize.apply(this, arguments);
+
+
+			_.assign(this, options);
+
+			// metadata
+			this.metaData = options.metaData || _.clone(this.metaData);
+
+			// cache
+			this._cache = {};
+
+			// cache for query objects.
+			this._queries = {};
+		},
 		/**
 		 *
 		 *
 		 *
 		 *
 		 */
-		meta: {
+		defaultQueryMeta: {
 			limit: 10,
+			skip: 0
 		},
 
 		/**
@@ -61,47 +70,22 @@ define(function (require, exports, module) {
 		 *
 		 * @method query
 		 * @param criteria
-		 * @param meta
+		 * @param metaData
 		 */
-		query: function query(criteria, meta) {
+		query: function query(criteria) {
+			criteria = criteria || {};
 
-			meta = _.extend({}, this.meta, meta);
+			var queryId = JSON.stringify(criteria),
+				// get the cached query
+				query = this._queries[queryId] || queryObject(this, criteria, _.clone(this.defaultQueryMeta));
 
-			return queryObject(this, criteria, meta);
-		},
+			// save to queries hash.
+			this._queries[queryId] = query;
 
-		/**
-		 * Maps the original requestData to
-		 * different keys.
-		 *
-		 * @property dataMap
-		 * @type Object
-		 */
-		dataMap: {},
-
-		/**
-		 * Receives a data object containing data about the request
-		 * to be made to the database.
-		 * Should return a data object with the mapped data names.
-
-		 * @method mapRequestData
-		 * @param requestData {Object}
-		 * @param dataMap {Object}
-		 */
-		mapRequestData: function(requestData, dataMap) {
-
-			_.each(dataMap, function(dest, src) {
-
-				var value = requestData[src];
-
-				// save
-				requestData[dest] = _.isObject(value) ? _.clone(value) : value;
-
-				// remove original
-				delete requestData[src];
-			});
-
-			return requestData;
+			// return query object
+			return query;
 		},
 	});
+
+	database.proto(require('./__database/xhr'));
 });

@@ -1,3 +1,7 @@
+/* jshint ignore:start */
+if (typeof define !== 'function') { var define = require('amdefine')(module) }
+/* jshint ignore:end */
+
 define(function (require, exports, module) {
 	'use strict';
 
@@ -12,6 +16,8 @@ define(function (require, exports, module) {
 
 		this.criteria = _.clone(criteria);
 		this.metaData = _.clone(meta);
+
+		this._syncedIntervals = [];
 	});
 
 	// proto

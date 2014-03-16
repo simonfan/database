@@ -1,0 +1,5 @@
+//     database
+//     (c) simonfan
+//     database is licensed under the MIT terms.
+
+define(["require","exports","module","backbone.collection.queryable","backbone.collection.multisort","backbone.collection.lazy","lowercase-backbone","lodash","./__database/query-object/index","./__database/xhr"],function(e,t,n){var r=e("backbone.collection.queryable"),i=e("backbone.collection.multisort"),s=e("backbone.collection.lazy"),o=e("lowercase-backbone"),u=e("lodash"),a=e("./__database/query-object/index"),f=n.exports=o.collection.extend(s.prototype).extend(i.prototype).extend(r.prototype);f.proto({initialize:function(t,n){o.collection.prototype.initialize.apply(this,arguments),s.prototype.initialize.apply(this,arguments),i.prototype.initialize.apply(this,arguments),r.prototype.initialize.apply(this,arguments),u.assign(this,n),this.metaData=n.metaData||u.clone(this.metaData),this._cache={},this._queries={}},defaultQueryMeta:{limit:10,skip:0},query:function l(e){e=e||{};var t=JSON.stringify(e),l=this._queries[t]||a(this,e,u.clone(this.defaultQueryMeta));return this._queries[t]=l,l}}),f.proto(e("./__database/xhr"))});

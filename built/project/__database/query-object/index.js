@@ -1,0 +1,1 @@
+define(["require","exports","module","subject","lodash","./exec","./meta"],function(e,t,n){var r=e("subject"),i=e("lodash"),s=n.exports=r(function(t,n,r){this.database=t,this.criteria=i.clone(n),this.metaData=i.clone(r),this._syncedIntervals=[]});s.proto(e("./exec")),s.proto(e("./meta"))});

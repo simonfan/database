@@ -1,0 +1,292 @@
+{
+    "project": {
+        "name": "database",
+        "version": "0.0.0"
+    },
+    "files": {
+        "src/__database/query-object/exec.js": {
+            "name": "src/__database/query-object/exec.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/__database/query-object/meta.js": {
+            "name": "src/__database/query-object/meta.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/__database/xhr.js": {
+            "name": "src/__database/xhr.js",
+            "modules": {
+                "xhr": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/index.js": {
+            "name": "src/index.js",
+            "modules": {
+                "database": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "database": {
+            "name": "database",
+            "submodules": {
+                "xhr": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src/index.js",
+            "line": 5,
+            "description": "AMD module."
+        },
+        "xhr": {
+            "name": "xhr",
+            "submodules": {},
+            "classes": {},
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "database",
+            "namespace": "",
+            "file": "src/__database/xhr.js",
+            "line": 1,
+            "description": "Stuff related to xhr."
+        }
+    },
+    "classes": {},
+    "classitems": [
+        {
+            "file": "src/__database/query-object/exec.js",
+            "line": 13,
+            "description": "The heart S2.",
+            "itemtype": "method",
+            "name": "sync",
+            "access": "private",
+            "tagname": "",
+            "class": ""
+        },
+        {
+            "file": "src/__database/query-object/exec.js",
+            "line": 39,
+            "description": "Syncs the database then does a clientExec.",
+            "itemtype": "method",
+            "name": "exec",
+            "class": ""
+        },
+        {
+            "file": "src/__database/query-object/exec.js",
+            "line": 61,
+            "description": "Runs 'database.query',\nchecks for query meta attributes.\n\nIf a sort is required, calls the database 'multisort' method.\nRuns database.query using the cursor's criteria hash and a projection object.\n\nIf a skip is defined, use the Lazy object's rest() method.\nIf a limit is defined, use Lazy object's take() method.",
+            "itemtype": "method",
+            "name": "clientExec",
+            "params": [
+                {
+                    "name": "projection",
+                    "description": "",
+                    "type": "Object",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "Lazy(models)"
+            },
+            "class": ""
+        },
+        {
+            "file": "src/__database/query-object/meta.js",
+            "line": 10,
+            "description": "Either sets or gets a query-metadata.",
+            "itemtype": "method",
+            "name": "meta",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "*",
+                    "optional": true
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "src/__database/query-object/meta.js",
+            "line": 41,
+            "description": "Sets the special meta-data relative to sorting order.\nThis method must be called individually, so that\nthe sorting priority is defined by method calling order.\n\nIf the method is called",
+            "itemtype": "method",
+            "name": "sortBy",
+            "params": [
+                {
+                    "name": "attribute",
+                    "description": "",
+                    "type": "String|Array"
+                },
+                {
+                    "name": "direction",
+                    "description": "",
+                    "type": "+1, -1|Object"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "src/__database/xhr.js",
+            "line": 17,
+            "description": "Options object to be passed to the $.ajax method\nExample: { dataType: 'jsonp' }",
+            "itemtype": "property",
+            "name": "xhrOptions",
+            "type": "Object",
+            "class": "",
+            "module": "database",
+            "submodule": "xhr"
+        },
+        {
+            "file": "src/__database/xhr.js",
+            "line": 26,
+            "description": "Coordinates the whole process of loading data from server.",
+            "itemtype": "method",
+            "name": "load",
+            "params": [
+                {
+                    "name": "requestData",
+                    "description": ""
+                }
+            ],
+            "class": "",
+            "module": "database",
+            "submodule": "xhr"
+        },
+        {
+            "file": "src/__database/xhr.js",
+            "line": 45,
+            "description": "before, we implemented the request by ourselves,\nso we had to parse and add the response.\nThe new implementation uses Bakcbone built-in fetch functionality, with some special options.",
+            "class": "",
+            "module": "database",
+            "submodule": "xhr"
+        },
+        {
+            "file": "src/__database/xhr.js",
+            "line": 68,
+            "description": "Maps the original requestData to\ndifferent keys.",
+            "itemtype": "property",
+            "name": "dataMap",
+            "type": "Object",
+            "class": "",
+            "module": "database",
+            "submodule": "xhr"
+        },
+        {
+            "file": "src/__database/xhr.js",
+            "line": 77,
+            "description": "Receives a data object containing data about the request\nto be made to the database.\nShould return a data object with the mapped data names.",
+            "itemtype": "method",
+            "name": "mapRequestData",
+            "params": [
+                {
+                    "name": "requestData",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "dataMap",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "",
+            "module": "database",
+            "submodule": "xhr"
+        },
+        {
+            "file": "src/__database/xhr.js",
+            "line": 105,
+            "itemtype": "method",
+            "name": "cache",
+            "params": [
+                {
+                    "name": "rData",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "",
+            "module": "database",
+            "submodule": "xhr"
+        },
+        {
+            "file": "src/__database/xhr.js",
+            "line": 121,
+            "description": "Either defines or retrieves the sync status for a given\nrequestData.",
+            "itemtype": "method",
+            "name": "syncStatus",
+            "params": [
+                {
+                    "name": "requestData",
+                    "description": ""
+                },
+                {
+                    "name": "interval",
+                    "description": ""
+                },
+                {
+                    "name": "status",
+                    "description": ""
+                }
+            ],
+            "class": "",
+            "module": "database",
+            "submodule": "xhr"
+        },
+        {
+            "file": "src/index.js",
+            "line": 56,
+            "class": "",
+            "module": "database"
+        },
+        {
+            "file": "src/index.js",
+            "line": 67,
+            "description": "Creates a query object linked to this\ndatabase.",
+            "itemtype": "method",
+            "name": "query",
+            "params": [
+                {
+                    "name": "criteria",
+                    "description": ""
+                },
+                {
+                    "name": "metaData",
+                    "description": ""
+                }
+            ],
+            "class": "",
+            "module": "database"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nbefore, we implemented the request by ourselves,\nso we had to parse and add the response.\nThe new implementation uses Bakcbone built-in fetch functionality, with some special options.",
+            "line": " src/__database/xhr.js:45"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/index.js:56"
+        }
+    ]
+}

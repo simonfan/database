@@ -113,7 +113,7 @@ module.exports = function (grunt) {
 
 					// exclude these modules AND their dependencies
 					// (excluding your bower dependencies)
-					exclude: ["backbone.collection.queryable","backbone.collection.multisort","backbone.collection.lazy","lowercase-backbone"],
+					exclude: ["backbone.collection.queryable", "backbone.collection.multisort", "backbone.collection.lazy", "lowercase-backbone", "backbone", "jquery", "q"],
 
 					// excludeShallow
 					excludeShallow: [],

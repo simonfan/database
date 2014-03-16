@@ -1,11 +1,40 @@
+/* jshint ignore:start */
+if (typeof define !== 'function') { var define = require('amdefine')(module) }
+/* jshint ignore:end */
+
 define(function (require, exports, module) {
 	'use strict';
 
 	// external
-	var _ = require('lodash');
+	var _ = require('lodash'),
+		q = require('q');
 
-	// internal
-	var sync = require('./private/sync');
+
+	/**
+	 * The heart S2.
+	 *
+	 *
+	 * @method sync
+	 * @private
+	 */
+	exports.sync = function sync(xhrOptions) {
+
+		var defer = q.defer(),
+			meta = this.meta(),
+			loaded = this.clientExec('id').toArray(),
+
+			// build the requestData:
+			requestData = {
+				meta: meta,
+				loaded: loaded,
+				criteria: this.criteria
+			};
+
+		this.database.load(requestData, xhrOptions)
+			.then(_.partial(defer.resolve, this));
+
+		return defer.promise;
+	};
 
 	/**
 	 * Syncs the database then does a clientExec.
@@ -13,23 +42,24 @@ define(function (require, exports, module) {
 	 * @method exec
 	 */
 	exports.exec = function exec(projection, xhrOptions) {
-		var defer = $.Deferred(),
-			doSync = sync.call(this, xhrOptions);
+		var defer = q.defer(),
+			doSync = this.sync(xhrOptions);
 
-		doSync.then(_.bind(function() {
+		doSync.then(_.bind(function () {
+
 			var res = this.clientExec(projection).toArray();
 
 			defer.resolve(res);
-		}, this))
+		}, this));
 
-		return defer;
+		return defer.promise;
 	};
 
 
 
 
 	/**
-	 * Runs 'backbone.collection.database.query',
+	 * Runs 'database.query',
 	 * checks for query meta attributes.
 	 *
 	 * If a sort is required, calls the database 'multisort' method.
@@ -43,9 +73,6 @@ define(function (require, exports, module) {
 	 * @return Lazy(models)
 	 */
 	exports.clientExec = function clientExec(projection) {
-		// get default projection
-		projection = projection || this.projection;
-
 		// load metadata
 		var sortAttributes = this.meta('sort-attributes'),
 			sortDirections = this.meta('sort-directions'),
@@ -56,7 +83,8 @@ define(function (require, exports, module) {
 		this.database.multisort(sortAttributes, sortDirections);
 
 		// run the query over the sorted collection
-		var res = this.database.query(this.criteria, projection);
+		// database.find is a method defined at Backbone.collection.queryable.
+		var res = this.database.find(this.criteria, projection);
 
 		res = skip ? res.rest(skip) : res;
 		res = limit ? res.take(limit) : res;

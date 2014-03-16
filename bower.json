@@ -1,19 +1,26 @@
 {
   "name": "database",
   "main": "built/database.js",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Some module...",
   "dependencies": {
-    "backbone.collection.queryable": "*",
-    "backbone.collection.multisort": "*",
-    "backbone.collection.lazy": "*",
-    "lowercase-backbone": "*"
+	"backbone.collection.queryable": "*",
+	"backbone.collection.multisort": "*",
+	"backbone.collection.lazy": "*",
+	"lowercase-backbone": "0.2.2",
+	"q": "~1.0.0",
+	"lodash": "~2.4.1",
+	"subject": "~0.4.1"
   },
   "devDependencies": {
-    "requirejs": "*",
-    "requirejs-text": "*",
-    "underscore": "*",
-    "jquery": "*",
-    "qunit": "*"
+	"requirejs": "*",
+	"requirejs-text": "*",
+	"underscore": "*",
+	"jquery": "*",
+	"qunit": "*",
+	"sinon": "~1.9.0"
+  },
+  "resolutions": {
+	"subject": "~0.4.1"
   }
 }
