@@ -255,13 +255,38 @@
         },
         {
             "file": "src/index.js",
-            "line": 56,
+            "line": 40,
+            "description": "[initialize description]",
+            "params": [
+                {
+                    "name": "models",
+                    "description": "[description]",
+                    "type": "[type]"
+                },
+                {
+                    "name": "options",
+                    "description": "[description]",
+                    "type": "[type]"
+                }
+            ],
+            "return": {
+                "description": "[description]",
+                "type": "[type]"
+            },
             "class": "",
             "module": "database"
         },
         {
             "file": "src/index.js",
-            "line": 67,
+            "line": 65,
+            "description": "[defaultQueryMeta description]",
+            "type": "{Object}",
+            "class": "",
+            "module": "database"
+        },
+        {
+            "file": "src/index.js",
+            "line": 74,
             "description": "Creates a query object linked to this\ndatabase.",
             "itemtype": "method",
             "name": "query",
@@ -285,8 +310,12 @@
             "line": " src/__database/xhr.js:45"
         },
         {
-            "message": "Missing item type",
-            "line": " src/index.js:56"
+            "message": "Missing item type\n[initialize description]",
+            "line": " src/index.js:40"
+        },
+        {
+            "message": "Missing item type\n[defaultQueryMeta description]",
+            "line": " src/index.js:65"
         }
     ]
 }

@@ -135,7 +135,7 @@ define(function (require, exports, module) {
 		var defer = q.defer(),
 			doSync = this.sync(xhrOptions);
 
-		doSync.then(_.bind(function () {
+		doSync.done(_.bind(function () {
 
 			var res = this.clientExec(projection).toArray();
 

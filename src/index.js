@@ -15,11 +15,11 @@ define(function (require, exports, module) {
 	'use strict';
 
 	// external
-	var Queryable = require('backbone.collection.queryable'),
-		Multisort = require('backbone.collection.multisort'),
+	var Queryable      = require('backbone.collection.queryable'),
+		Multisort      = require('backbone.collection.multisort'),
 		LazyCollection = require('backbone.collection.lazy'),
-		backbone = require('lowercase-backbone'),
-		_ = require('lodash');
+		backbone       = require('lowercase-backbone'),
+		_              = require('lodash');
 
 	// internal
 	var queryObject = require('./__database/query-object/index');
@@ -33,8 +33,16 @@ define(function (require, exports, module) {
 			.extend(Multisort.prototype)
 			.extend(Queryable.prototype);
 
-	database.proto({
 
+
+	database.assignProto({
+
+		/**
+		 * [initialize description]
+		 * @param  {[type]} models  [description]
+		 * @param  {[type]} options [description]
+		 * @return {[type]}         [description]
+		 */
 		initialize: function initializeDatabase(models, options) {
 			backbone.collection.prototype.initialize.apply(this, arguments);
 			LazyCollection.prototype.initialize.apply(this, arguments);
@@ -53,11 +61,10 @@ define(function (require, exports, module) {
 			// cache for query objects.
 			this._queries = {};
 		},
+
 		/**
-		 *
-		 *
-		 *
-		 *
+		 * [defaultQueryMeta description]
+		 * @type {Object}
 		 */
 		defaultQueryMeta: {
 			limit: 10,
@@ -77,15 +84,16 @@ define(function (require, exports, module) {
 
 			var queryId = JSON.stringify(criteria),
 				// get the cached query
-				query = this._queries[queryId] || queryObject(this, criteria, _.clone(this.defaultQueryMeta));
+				// or create a new query object
+				queryObj = this._queries[queryId] || queryObject(this, criteria, _.clone(this.defaultQueryMeta));
 
 			// save to queries hash.
-			this._queries[queryId] = query;
+			this._queries[queryId] = queryObj;
 
 			// return query object
-			return query;
+			return queryObj;
 		},
 	});
 
-	database.proto(require('./__database/xhr'));
+	database.assignProto(require('./__database/xhr'));
 });

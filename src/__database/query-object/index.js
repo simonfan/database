@@ -10,17 +10,20 @@ define(function (require, exports, module) {
 		_ = require('lodash');
 
 	// object
-	var query = module.exports = subject(function queryObject(database, criteria, meta) {
+	var query = module.exports = subject({
 
-		this.database = database;
+		initialize: function initializeQueryObject(database, criteria, meta) {
 
-		this.criteria = _.clone(criteria);
-		this.metaData = _.clone(meta);
+			this.database = database;
 
-		this._syncedIntervals = [];
+			this.criteria = _.clone(criteria);
+			this.metaData = _.clone(meta);
+
+			this._syncedIntervals = [];
+		}
 	});
 
 	// proto
-	query.proto(require('./exec'));
-	query.proto(require('./meta'));
+	query.assignProto(require('./exec'));
+	query.assignProto(require('./meta'));
 });

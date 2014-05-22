@@ -83,7 +83,7 @@ module.exports = function (grunt) {
 				options: {
 					livereload: true
 				},
-				tasks: ['jshint:gruntfile', 'jshint:src', 'simplemocha']
+				tasks: ['jshint:gruntfile', 'jshint:src']
 			},
 
 			bower: {
@@ -126,18 +126,70 @@ module.exports = function (grunt) {
 				}
 			},
 
-			project: {
+			// unminified
+			dev: {
 				options: {
-					// source files
-					appDir: 'src/',
-					// output here:
-					dir: 'built/project/',
+					// base url where to look for module files
+					// and relative to which the module paths will be defined
+					// (must coincide with that defined in mainConfigFile)
+					baseUrl: './src',
+					// module name
+					name: 'database',
+					// output here
+					out: './built/database.dev.js',
+					// config file
 					mainConfigFile: 'amdconfig.js',
 
-					// do not copy these files
-					fileExclusionRegExp: /^\./,
+					// include these modules
+					include: [],
+
+					// exclude these modules AND their dependencies
+					// (excluding your bower dependencies)
+					exclude: ["backbone.collection.queryable", "backbone.collection.multisort", "backbone.collection.lazy", "lowercase-backbone", "backbone", "jquery", "q"],
+
+					// excludeShallow
+					excludeShallow: [],
+
+					optimize: 'none',
+
+					pragmas: {
+						exclude: true,
+					},
 				}
-			}
+			},
+
+
+			// just for "size comparison" purposes.
+			full: {
+				options: {
+					// base url where to look for module files
+					// and relative to which the module paths will be defined
+					// (must coincide with that defined in mainConfigFile)
+					baseUrl: './src',
+					// module name
+					name: 'database',
+					// output here
+					out: './built/database.full.js',
+					// config file
+					mainConfigFile: 'amdconfig.js',
+
+					// include these modules
+					include: [],
+
+					// exclude these modules AND their dependencies
+					// (excluding your bower dependencies)
+					exclude: ["backbone", "q", "lodash"],
+
+					// excludeShallow
+					excludeShallow: [],
+
+					optimize: 'uglify2',
+
+					pragmas: {
+						exclude: true,
+					},
+				}
+			},
 		}
 	});
 
@@ -156,8 +208,6 @@ module.exports = function (grunt) {
 	configuration script (amdconfig.js).
 	*/
 
-	grunt.loadNpmTasks('grunt-simple-mocha');
-
 	/**
 	Auxiliary task that starts a server in a child process.
 	*/
@@ -171,9 +221,6 @@ module.exports = function (grunt) {
 	});
 
 
-	// mocha tests
-	grunt.registerTask('mocha', 'simplemocha');
-
 	// full live
 	grunt.registerTask('live', ['child-process-server', 'watch:live']);
 	/**
@@ -181,5 +228,5 @@ module.exports = function (grunt) {
 	[2] Starts watching files.
 	*/
 
-	grunt.registerTask('default', ['bower', 'yuidoc', 'jshint:gruntfile', 'jshint:src', 'requirejs', 'simplemocha', 'live']);
+	grunt.registerTask('default', ['bower', 'yuidoc', 'jshint:gruntfile', 'jshint:src', 'requirejs', 'live']);
 };
