@@ -132,7 +132,7 @@ define(function (require, exports, module) {
 	 * @method exec
 	 */
 	exports.exec = function exec(projection, xhrOptions) {
-		var defer = q.defer(),
+		var defer  = q.defer(),
 			doSync = this.sync(xhrOptions);
 
 		doSync.done(_.bind(function () {
@@ -166,8 +166,8 @@ define(function (require, exports, module) {
 		// load metadata
 		var sortAttributes = this.meta(&#x27;sort-attributes&#x27;),
 			sortDirections = this.meta(&#x27;sort-directions&#x27;),
-			skip = this.meta(&#x27;skip&#x27;),
-			limit = this.meta(&#x27;limit&#x27;);
+			skip           = this.meta(&#x27;skip&#x27;),
+			limit          = this.meta(&#x27;limit&#x27;);
 
 		// sort the database befeore anything else.
 		this.database.multisort(sortAttributes, sortDirections);

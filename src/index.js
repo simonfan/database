@@ -19,7 +19,8 @@ define(function (require, exports, module) {
 		Multisort      = require('backbone.collection.multisort'),
 		LazyCollection = require('backbone.collection.lazy'),
 		backbone       = require('lowercase-backbone'),
-		_              = require('lodash');
+		_              = require('lodash'),
+		q              = require('q');
 
 	// internal
 	var queryObject = require('./__database/query-object/index');
@@ -92,6 +93,38 @@ define(function (require, exports, module) {
 
 			// return query object
 			return queryObj;
+		},
+
+		/**
+		 * Returns only one item.
+		 * As it is impossible to have gaps in 'one' sequence',
+		 * always resolve promise immediately in case one model is found.
+		 *
+		 * @param  {[type]} criteria [description]
+		 * @return {[type]}          [description]
+		 */
+		queryOne: function queryOne(criteria) {
+
+			var defer = q.defer();
+
+			criteria = criteria || {};
+
+
+			// try to find locally
+			var res = this.findOne(criteria);
+
+			if (res) {
+				defer.resolve(res);
+			} else {
+				this.query(criteria)
+					.limit(1)
+					.exec()
+					.done(function (models) {
+						defer.resolve(models[0]);
+					});
+			}
+
+			return defer.promise;
 		},
 	});
 

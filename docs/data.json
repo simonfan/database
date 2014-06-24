@@ -255,7 +255,7 @@
         },
         {
             "file": "src/index.js",
-            "line": 40,
+            "line": 41,
             "description": "[initialize description]",
             "params": [
                 {
@@ -278,7 +278,7 @@
         },
         {
             "file": "src/index.js",
-            "line": 65,
+            "line": 66,
             "description": "[defaultQueryMeta description]",
             "type": "{Object}",
             "class": "",
@@ -286,7 +286,7 @@
         },
         {
             "file": "src/index.js",
-            "line": 74,
+            "line": 75,
             "description": "Creates a query object linked to this\ndatabase.",
             "itemtype": "method",
             "name": "query",
@@ -302,6 +302,24 @@
             ],
             "class": "",
             "module": "database"
+        },
+        {
+            "file": "src/index.js",
+            "line": 98,
+            "description": "Returns only one item.\nAs it is impossible to have gaps in 'one' sequence',\nalways resolve promise immediately in case one model is found.",
+            "params": [
+                {
+                    "name": "criteria",
+                    "description": "[description]",
+                    "type": "[type]"
+                }
+            ],
+            "return": {
+                "description": "[description]",
+                "type": "[type]"
+            },
+            "class": "",
+            "module": "database"
         }
     ],
     "warnings": [
@@ -311,11 +329,15 @@
         },
         {
             "message": "Missing item type\n[initialize description]",
-            "line": " src/index.js:40"
+            "line": " src/index.js:41"
         },
         {
             "message": "Missing item type\n[defaultQueryMeta description]",
-            "line": " src/index.js:65"
+            "line": " src/index.js:66"
+        },
+        {
+            "message": "Missing item type\nReturns only one item.\nAs it is impossible to have gaps in 'one' sequence',\nalways resolve promise immediately in case one model is found.",
+            "line": " src/index.js:98"
         }
     ]
 }

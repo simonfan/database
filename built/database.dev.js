@@ -42,7 +42,7 @@ define('__database/query-object/exec',['require','exports','module','lodash','q'
 	 * @method exec
 	 */
 	exports.exec = function exec(projection, xhrOptions) {
-		var defer = q.defer(),
+		var defer  = q.defer(),
 			doSync = this.sync(xhrOptions);
 
 		doSync.done(_.bind(function () {
@@ -76,8 +76,8 @@ define('__database/query-object/exec',['require','exports','module','lodash','q'
 		// load metadata
 		var sortAttributes = this.meta('sort-attributes'),
 			sortDirections = this.meta('sort-directions'),
-			skip = this.meta('skip'),
-			limit = this.meta('limit');
+			skip           = this.meta('skip'),
+			limit          = this.meta('limit');
 
 		// sort the database befeore anything else.
 		this.database.multisort(sortAttributes, sortDirections);
@@ -351,7 +351,7 @@ define('__database/xhr',['require','exports','module','lodash'],function (requir
 
 /* jshint ignore:end */
 
-define('database',['require','exports','module','backbone.collection.queryable','backbone.collection.multisort','backbone.collection.lazy','lowercase-backbone','lodash','./__database/query-object/index','./__database/xhr'],function (require, exports, module) {
+define('database',['require','exports','module','backbone.collection.queryable','backbone.collection.multisort','backbone.collection.lazy','lowercase-backbone','lodash','q','./__database/query-object/index','./__database/xhr'],function (require, exports, module) {
 	
 
 	// external
@@ -359,7 +359,8 @@ define('database',['require','exports','module','backbone.collection.queryable',
 		Multisort      = require('backbone.collection.multisort'),
 		LazyCollection = require('backbone.collection.lazy'),
 		backbone       = require('lowercase-backbone'),
-		_              = require('lodash');
+		_              = require('lodash'),
+		q              = require('q');
 
 	// internal
 	var queryObject = require('./__database/query-object/index');
@@ -432,6 +433,38 @@ define('database',['require','exports','module','backbone.collection.queryable',
 
 			// return query object
 			return queryObj;
+		},
+
+		/**
+		 * Returns only one item.
+		 * As it is impossible to have gaps in 'one' sequence',
+		 * always resolve promise immediately in case one model is found.
+		 *
+		 * @param  {[type]} criteria [description]
+		 * @return {[type]}          [description]
+		 */
+		queryOne: function queryOne(criteria) {
+
+			var defer = q.defer();
+
+			criteria = criteria || {};
+
+
+			// try to find locally
+			var res = this.findOne(criteria);
+
+			if (res) {
+				defer.resolve(res);
+			} else {
+				this.query(criteria)
+					.limit(1)
+					.exec()
+					.done(function (models) {
+						defer.resolve(models[0]);
+					});
+			}
+
+			return defer.promise;
 		},
 	});
 
