@@ -23,7 +23,8 @@ define(function (require, exports, module) {
 		q              = require('q');
 
 	// internal
-	var queryObject = require('./__database/query-object/index');
+	var queryObject        = require('./__database/query-object/index'),
+		filteredCollection = require('./__database/filtered-collection');
 
 	// object
 	var database = module.exports =
@@ -126,6 +127,30 @@ define(function (require, exports, module) {
 
 			return defer.promise;
 		},
+
+
+
+		/**
+		 * Instantiates a filtered collection with reference to the
+		 * database.
+		 *
+		 * @param  {[type]} options [description]
+		 * @return {[type]}         [description]
+		 */
+		filtered: function buildFilteredCollection(options) {
+
+			options = options || {};
+
+			/**
+			 * Set the database reference.
+			 *
+			 * @type {[type]}
+			 */
+			options.database = this;
+
+			var collection = filteredCollection([], options);
+
+		}
 	});
 
 	database.assignProto(require('./__database/xhr'));

@@ -113,7 +113,8 @@ define(function (require, exports, module) {
 		q              = require(&#x27;q&#x27;);
 
 	// internal
-	var queryObject = require(&#x27;./__database/query-object/index&#x27;);
+	var queryObject        = require(&#x27;./__database/query-object/index&#x27;),
+		filteredCollection = require(&#x27;./__database/filtered-collection&#x27;);
 
 	// object
 	var database = module.exports =
@@ -216,6 +217,30 @@ define(function (require, exports, module) {
 
 			return defer.promise;
 		},
+
+
+
+		/**
+		 * Instantiates a filtered collection with reference to the
+		 * database.
+		 *
+		 * @param  {[type]} options [description]
+		 * @return {[type]}         [description]
+		 */
+		filtered: function buildFilteredCollection(options) {
+
+			options = options || {};
+
+			/**
+			 * Set the database reference.
+			 *
+			 * @type {[type]}
+			 */
+			options.database = this;
+
+			var collection = filteredCollection([], options);
+
+		}
 	});
 
 	database.assignProto(require(&#x27;./__database/xhr&#x27;));

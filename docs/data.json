@@ -18,6 +18,13 @@
             "fors": {},
             "namespaces": {}
         },
+        "src/__database/filtered-collection.js": {
+            "name": "src/__database/filtered-collection.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "src/__database/xhr.js": {
             "name": "src/__database/xhr.js",
             "modules": {
@@ -146,6 +153,82 @@
             "class": ""
         },
         {
+            "file": "src/__database/filtered-collection.js",
+            "line": 1,
+            "description": "Defines general logic for filtered collections.",
+            "params": [
+                {
+                    "name": "require",
+                    "description": "[description]",
+                    "type": "[type]"
+                },
+                {
+                    "name": "exports",
+                    "description": "[description]",
+                    "type": "[type]"
+                },
+                {
+                    "name": "module",
+                    "description": "[description]",
+                    "type": "[type]"
+                }
+            ],
+            "return": {
+                "description": "[description]",
+                "type": "[type]"
+            },
+            "class": ""
+        },
+        {
+            "file": "src/__database/filtered-collection.js",
+            "line": 24,
+            "description": "Initialization logic for filtered collection.\nUses database module specifications.",
+            "params": [
+                {
+                    "name": "models",
+                    "description": "[description]",
+                    "type": "[type]"
+                },
+                {
+                    "name": "options",
+                    "description": "[description]",
+                    "type": "[type]"
+                }
+            ],
+            "return": {
+                "description": "[description]",
+                "type": "[type]"
+            },
+            "class": ""
+        },
+        {
+            "file": "src/__database/filtered-collection.js",
+            "line": 59,
+            "description": "The property that holds pageLength\nMay be set on instantiation or extension.",
+            "type": "{Number}",
+            "class": ""
+        },
+        {
+            "file": "src/__database/filtered-collection.js",
+            "line": 67,
+            "description": "Handles change events on the filterModel model property.\nBasically does querying on the datbase and resets the collection.",
+            "return": {
+                "description": "[description]",
+                "type": "[type]"
+            },
+            "class": ""
+        },
+        {
+            "file": "src/__database/filtered-collection.js",
+            "line": 94,
+            "description": "Method to be executed to retrieve filtered items.",
+            "return": {
+                "description": "[description]",
+                "type": "[type]"
+            },
+            "class": ""
+        },
+        {
             "file": "src/__database/xhr.js",
             "line": 17,
             "description": "Options object to be passed to the $.ajax method\nExample: { dataType: 'jsonp' }",
@@ -255,7 +338,7 @@
         },
         {
             "file": "src/index.js",
-            "line": 41,
+            "line": 42,
             "description": "[initialize description]",
             "params": [
                 {
@@ -278,7 +361,7 @@
         },
         {
             "file": "src/index.js",
-            "line": 66,
+            "line": 67,
             "description": "[defaultQueryMeta description]",
             "type": "{Object}",
             "class": "",
@@ -286,7 +369,7 @@
         },
         {
             "file": "src/index.js",
-            "line": 75,
+            "line": 76,
             "description": "Creates a query object linked to this\ndatabase.",
             "itemtype": "method",
             "name": "query",
@@ -305,7 +388,7 @@
         },
         {
             "file": "src/index.js",
-            "line": 98,
+            "line": 99,
             "description": "Returns only one item.\nAs it is impossible to have gaps in 'one' sequence',\nalways resolve promise immediately in case one model is found.",
             "params": [
                 {
@@ -320,24 +403,78 @@
             },
             "class": "",
             "module": "database"
+        },
+        {
+            "file": "src/index.js",
+            "line": 133,
+            "description": "Instantiates a filtered collection with reference to the\ndatabase.",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "[description]",
+                    "type": "[type]"
+                }
+            ],
+            "return": {
+                "description": "[description]",
+                "type": "[type]"
+            },
+            "class": "",
+            "module": "database"
+        },
+        {
+            "file": "src/index.js",
+            "line": 144,
+            "description": "Set the database reference.",
+            "type": "{[type]}",
+            "class": "",
+            "module": "database"
         }
     ],
     "warnings": [
+        {
+            "message": "Missing item type\nDefines general logic for filtered collections.",
+            "line": " src/__database/filtered-collection.js:1"
+        },
+        {
+            "message": "Missing item type\nInitialization logic for filtered collection.\nUses database module specifications.",
+            "line": " src/__database/filtered-collection.js:24"
+        },
+        {
+            "message": "Missing item type\nThe property that holds pageLength\nMay be set on instantiation or extension.",
+            "line": " src/__database/filtered-collection.js:59"
+        },
+        {
+            "message": "Missing item type\nHandles change events on the filterModel model property.\nBasically does querying on the datbase and resets the collection.",
+            "line": " src/__database/filtered-collection.js:67"
+        },
+        {
+            "message": "Missing item type\nMethod to be executed to retrieve filtered items.",
+            "line": " src/__database/filtered-collection.js:94"
+        },
         {
             "message": "Missing item type\nbefore, we implemented the request by ourselves,\nso we had to parse and add the response.\nThe new implementation uses Bakcbone built-in fetch functionality, with some special options.",
             "line": " src/__database/xhr.js:45"
         },
         {
             "message": "Missing item type\n[initialize description]",
-            "line": " src/index.js:41"
+            "line": " src/index.js:42"
         },
         {
             "message": "Missing item type\n[defaultQueryMeta description]",
-            "line": " src/index.js:66"
+            "line": " src/index.js:67"
         },
         {
             "message": "Missing item type\nReturns only one item.\nAs it is impossible to have gaps in 'one' sequence',\nalways resolve promise immediately in case one model is found.",
-            "line": " src/index.js:98"
+            "line": " src/index.js:99"
+        },
+        {
+            "message": "Missing item type\nInstantiates a filtered collection with reference to the\ndatabase.",
+            "line": " src/index.js:133"
+        },
+        {
+            "message": "Missing item type\nSet the database reference.",
+            "line": " src/index.js:144"
         }
     ]
 }
