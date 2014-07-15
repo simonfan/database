@@ -361,7 +361,7 @@
         },
         {
             "file": "src/index.js",
-            "line": 67,
+            "line": 69,
             "description": "[defaultQueryMeta description]",
             "type": "{Object}",
             "class": "",
@@ -369,7 +369,7 @@
         },
         {
             "file": "src/index.js",
-            "line": 76,
+            "line": 78,
             "description": "Creates a query object linked to this\ndatabase.",
             "itemtype": "method",
             "name": "query",
@@ -388,7 +388,7 @@
         },
         {
             "file": "src/index.js",
-            "line": 99,
+            "line": 101,
             "description": "Returns only one item.\nAs it is impossible to have gaps in 'one' sequence',\nalways resolve promise immediately in case one model is found.",
             "params": [
                 {
@@ -406,7 +406,7 @@
         },
         {
             "file": "src/index.js",
-            "line": 133,
+            "line": 135,
             "description": "Instantiates a filtered collection with reference to the\ndatabase.",
             "params": [
                 {
@@ -424,7 +424,7 @@
         },
         {
             "file": "src/index.js",
-            "line": 144,
+            "line": 146,
             "description": "Set the database reference.",
             "type": "{[type]}",
             "class": "",
@@ -462,19 +462,19 @@
         },
         {
             "message": "Missing item type\n[defaultQueryMeta description]",
-            "line": " src/index.js:67"
+            "line": " src/index.js:69"
         },
         {
             "message": "Missing item type\nReturns only one item.\nAs it is impossible to have gaps in 'one' sequence',\nalways resolve promise immediately in case one model is found.",
-            "line": " src/index.js:99"
+            "line": " src/index.js:101"
         },
         {
             "message": "Missing item type\nInstantiates a filtered collection with reference to the\ndatabase.",
-            "line": " src/index.js:133"
+            "line": " src/index.js:135"
         },
         {
             "message": "Missing item type\nSet the database reference.",
-            "line": " src/index.js:144"
+            "line": " src/index.js:146"
         }
     ]
 }

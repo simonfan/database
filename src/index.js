@@ -51,6 +51,8 @@ define(function (require, exports, module) {
 			Multisort.prototype.initialize.apply(this, arguments);
 			Queryable.prototype.initialize.apply(this, arguments);
 
+			// default options to plain empty object
+			options = options || {};
 
 			_.assign(this, options);
 
@@ -148,8 +150,11 @@ define(function (require, exports, module) {
 			 */
 			options.database = this;
 
-			var collection = filteredCollection([], options);
+			// let the filteredCollection have the same model object
+			// as the database
+			_filteredCollection = filteredCollection.extend({ model: this.model });
 
+			return _filteredCollection([], options);
 		}
 	});
 
