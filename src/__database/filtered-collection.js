@@ -11,7 +11,7 @@ define(function (require, exports, module) {
 	var backbone = require('lowercase-backbone');
 
 
-	var instantiationOptions = ['database', 'filter', 'pageLength'];
+	var instantiationOptions = ['database', 'filterModel', 'pageLength'];
 
 
 		// direct reference to the backbone collection

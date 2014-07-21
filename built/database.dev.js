@@ -217,7 +217,7 @@ define('__database/filtered-collection',['require','exports','module','lowercase
 	var backbone = require('lowercase-backbone');
 
 
-	var instantiationOptions = ['database', 'filter', 'pageLength'];
+	var instantiationOptions = ['database', 'filterModel', 'pageLength'];
 
 
 		// direct reference to the backbone collection
