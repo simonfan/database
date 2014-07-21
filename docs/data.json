@@ -220,7 +220,7 @@
         },
         {
             "file": "src/__database/filtered-collection.js",
-            "line": 94,
+            "line": 98,
             "description": "Method to be executed to retrieve filtered items.",
             "return": {
                 "description": "[description]",
@@ -450,7 +450,7 @@
         },
         {
             "message": "Missing item type\nMethod to be executed to retrieve filtered items.",
-            "line": " src/__database/filtered-collection.js:94"
+            "line": " src/__database/filtered-collection.js:98"
         },
         {
             "message": "Missing item type\nbefore, we implemented the request by ourselves,\nso we had to parse and add the response.\nThe new implementation uses Bakcbone built-in fetch functionality, with some special options.",

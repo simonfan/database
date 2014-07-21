@@ -86,7 +86,11 @@ define(function (require, exports, module) {
 				.done(_.bind(function (res) {
 
 					// reset the collection with the new models.
-					this.reset(res);
+					// pluck attributes,
+					// as backbone does not recognize
+					// the array of models
+					// [potential bug. demandss study]
+					this.reset(_.pluck(res, 'attributes'));
 
 				}, this));
 		},
