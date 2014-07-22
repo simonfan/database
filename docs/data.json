@@ -220,7 +220,24 @@
         },
         {
             "file": "src/__database/filtered-collection.js",
-            "line": 98,
+            "line": 101,
+            "description": "Formats the criteria object.\nBasically deletes 'falsey' values.",
+            "params": [
+                {
+                    "name": "criteria",
+                    "description": "[description]",
+                    "type": "[type]"
+                }
+            ],
+            "return": {
+                "description": "[description]",
+                "type": "[type]"
+            },
+            "class": ""
+        },
+        {
+            "file": "src/__database/filtered-collection.js",
+            "line": 115,
             "description": "Method to be executed to retrieve filtered items.",
             "return": {
                 "description": "[description]",
@@ -449,8 +466,12 @@
             "line": " src/__database/filtered-collection.js:67"
         },
         {
+            "message": "Missing item type\nFormats the criteria object.\nBasically deletes 'falsey' values.",
+            "line": " src/__database/filtered-collection.js:101"
+        },
+        {
             "message": "Missing item type\nMethod to be executed to retrieve filtered items.",
-            "line": " src/__database/filtered-collection.js:98"
+            "line": " src/__database/filtered-collection.js:115"
         },
         {
             "message": "Missing item type\nbefore, we implemented the request by ourselves,\nso we had to parse and add the response.\nThe new implementation uses Bakcbone built-in fetch functionality, with some special options.",

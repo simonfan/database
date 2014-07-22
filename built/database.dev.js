@@ -217,7 +217,7 @@ define('__database/filtered-collection',['require','exports','module','lowercase
 	var backbone = require('lowercase-backbone');
 
 
-	var instantiationOptions = ['database', 'filterModel', 'pageLength'];
+	var instantiationOptions = ['database', 'filterModel', 'pageLength', 'formatCriteria'];
 
 
 		// direct reference to the backbone collection
@@ -287,6 +287,9 @@ define('__database/filtered-collection',['require','exports','module','lowercase
 			// get copy object of the filterModel attributes
 			var criteria = this.filterModel.toJSON();
 
+			// format the criteria
+			criteria = this.formatCriteria(criteria);
+
 			// run query
 			this.query(criteria)
 				.done(_.bind(function (res) {
@@ -299,6 +302,20 @@ define('__database/filtered-collection',['require','exports','module','lowercase
 					this.reset(_.pluck(res, 'attributes'));
 
 				}, this));
+		},
+
+		/**
+		 * Formats the criteria object.
+		 * Basically deletes 'falsey' values.
+		 *
+		 * @param  {[type]} criteria [description]
+		 * @return {[type]}          [description]
+		 */
+		formatCriteria: function formatCriteria(criteria) {
+			_.each(criteria, function(v, k) {
+				if(!v) { delete criteria[k]; }
+			});
+			return criteria;
 		},
 
 		/**
