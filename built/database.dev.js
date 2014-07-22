@@ -217,7 +217,7 @@ define('__database/filtered-collection',['require','exports','module','lowercase
 	var backbone = require('lowercase-backbone');
 
 
-	var instantiationOptions = ['database', 'filterModel', 'pageLength', 'formatCriteria'];
+	var instantiationOptions = ['database', 'filterModel', 'pageLength', 'formatCriteria', 'filterAttributes'];
 
 
 		// direct reference to the backbone collection
@@ -262,6 +262,37 @@ define('__database/filtered-collection',['require','exports','module','lowercase
 			this.listenTo(this.filterModel, 'change', this.handleFilterModelChange);
 		},
 
+
+		/**
+		 * Either boolean or array.
+		 * If array, is the selection of attribtes tobe
+		 * used for filtering.
+		 *
+		 * @type {Boolean}
+		 */
+		filterAttributes: false,
+
+
+		/**
+		 * Formats the criteria object.
+		 * Basically deletes 'falsey' values.
+		 *
+		 * @param  {[type]} criteria [description]
+		 * @return {[type]}          [description]
+		 */
+		formatCriteria: function formatCriteria(criteria) {
+
+			var res = {};
+
+			_.each(criteria, function (v, k) {
+				if (v && this.filterAttributes && _.contains(this.filterAttributes, k)) {
+					res[k] = v;
+				}
+			}, this);
+
+			return res;
+		},
+
 		/**
 		 * The property that holds pageLength
 		 * May be set on instantiation or extension.
@@ -302,20 +333,6 @@ define('__database/filtered-collection',['require','exports','module','lowercase
 					this.reset(_.pluck(res, 'attributes'));
 
 				}, this));
-		},
-
-		/**
-		 * Formats the criteria object.
-		 * Basically deletes 'falsey' values.
-		 *
-		 * @param  {[type]} criteria [description]
-		 * @return {[type]}          [description]
-		 */
-		formatCriteria: function formatCriteria(criteria) {
-			_.each(criteria, function(v, k) {
-				if(!v) { delete criteria[k]; }
-			});
-			return criteria;
 		},
 
 		/**

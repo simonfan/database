@@ -203,24 +203,14 @@
         },
         {
             "file": "src/__database/filtered-collection.js",
-            "line": 59,
-            "description": "The property that holds pageLength\nMay be set on instantiation or extension.",
-            "type": "{Number}",
+            "line": 60,
+            "description": "Either boolean or array.\nIf array, is the selection of attribtes tobe\nused for filtering.",
+            "type": "{Boolean}",
             "class": ""
         },
         {
             "file": "src/__database/filtered-collection.js",
-            "line": 67,
-            "description": "Handles change events on the filterModel model property.\nBasically does querying on the datbase and resets the collection.",
-            "return": {
-                "description": "[description]",
-                "type": "[type]"
-            },
-            "class": ""
-        },
-        {
-            "file": "src/__database/filtered-collection.js",
-            "line": 101,
+            "line": 70,
             "description": "Formats the criteria object.\nBasically deletes 'falsey' values.",
             "params": [
                 {
@@ -237,7 +227,24 @@
         },
         {
             "file": "src/__database/filtered-collection.js",
-            "line": 115,
+            "line": 90,
+            "description": "The property that holds pageLength\nMay be set on instantiation or extension.",
+            "type": "{Number}",
+            "class": ""
+        },
+        {
+            "file": "src/__database/filtered-collection.js",
+            "line": 98,
+            "description": "Handles change events on the filterModel model property.\nBasically does querying on the datbase and resets the collection.",
+            "return": {
+                "description": "[description]",
+                "type": "[type]"
+            },
+            "class": ""
+        },
+        {
+            "file": "src/__database/filtered-collection.js",
+            "line": 132,
             "description": "Method to be executed to retrieve filtered items.",
             "return": {
                 "description": "[description]",
@@ -458,20 +465,24 @@
             "line": " src/__database/filtered-collection.js:24"
         },
         {
-            "message": "Missing item type\nThe property that holds pageLength\nMay be set on instantiation or extension.",
-            "line": " src/__database/filtered-collection.js:59"
-        },
-        {
-            "message": "Missing item type\nHandles change events on the filterModel model property.\nBasically does querying on the datbase and resets the collection.",
-            "line": " src/__database/filtered-collection.js:67"
+            "message": "Missing item type\nEither boolean or array.\nIf array, is the selection of attribtes tobe\nused for filtering.",
+            "line": " src/__database/filtered-collection.js:60"
         },
         {
             "message": "Missing item type\nFormats the criteria object.\nBasically deletes 'falsey' values.",
-            "line": " src/__database/filtered-collection.js:101"
+            "line": " src/__database/filtered-collection.js:70"
+        },
+        {
+            "message": "Missing item type\nThe property that holds pageLength\nMay be set on instantiation or extension.",
+            "line": " src/__database/filtered-collection.js:90"
+        },
+        {
+            "message": "Missing item type\nHandles change events on the filterModel model property.\nBasically does querying on the datbase and resets the collection.",
+            "line": " src/__database/filtered-collection.js:98"
         },
         {
             "message": "Missing item type\nMethod to be executed to retrieve filtered items.",
-            "line": " src/__database/filtered-collection.js:115"
+            "line": " src/__database/filtered-collection.js:132"
         },
         {
             "message": "Missing item type\nbefore, we implemented the request by ourselves,\nso we had to parse and add the response.\nThe new implementation uses Bakcbone built-in fetch functionality, with some special options.",

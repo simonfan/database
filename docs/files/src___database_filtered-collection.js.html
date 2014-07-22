@@ -101,7 +101,7 @@ define(function (require, exports, module) {
 	var backbone = require(&#x27;lowercase-backbone&#x27;);
 
 
-	var instantiationOptions = [&#x27;database&#x27;, &#x27;filterModel&#x27;, &#x27;pageLength&#x27;, &#x27;formatCriteria&#x27;];
+	var instantiationOptions = [&#x27;database&#x27;, &#x27;filterModel&#x27;, &#x27;pageLength&#x27;, &#x27;formatCriteria&#x27;, &#x27;filterAttributes&#x27;];
 
 
 		// direct reference to the backbone collection
@@ -146,6 +146,37 @@ define(function (require, exports, module) {
 			this.listenTo(this.filterModel, &#x27;change&#x27;, this.handleFilterModelChange);
 		},
 
+
+		/**
+		 * Either boolean or array.
+		 * If array, is the selection of attribtes tobe
+		 * used for filtering.
+		 *
+		 * @type {Boolean}
+		 */
+		filterAttributes: false,
+
+
+		/**
+		 * Formats the criteria object.
+		 * Basically deletes &#x27;falsey&#x27; values.
+		 *
+		 * @param  {[type]} criteria [description]
+		 * @return {[type]}          [description]
+		 */
+		formatCriteria: function formatCriteria(criteria) {
+
+			var res = {};
+
+			_.each(criteria, function (v, k) {
+				if (v &amp;&amp; this.filterAttributes &amp;&amp; _.contains(this.filterAttributes, k)) {
+					res[k] = v;
+				}
+			}, this);
+
+			return res;
+		},
+
 		/**
 		 * The property that holds pageLength
 		 * May be set on instantiation or extension.
@@ -186,20 +217,6 @@ define(function (require, exports, module) {
 					this.reset(_.pluck(res, &#x27;attributes&#x27;));
 
 				}, this));
-		},
-
-		/**
-		 * Formats the criteria object.
-		 * Basically deletes &#x27;falsey&#x27; values.
-		 *
-		 * @param  {[type]} criteria [description]
-		 * @return {[type]}          [description]
-		 */
-		formatCriteria: function formatCriteria(criteria) {
-			_.each(criteria, function(v, k) {
-				if(!v) { delete criteria[k]; }
-			});
-			return criteria;
 		},
 
 		/**
