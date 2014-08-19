@@ -118,7 +118,7 @@ module.exports = function (grunt) {
 					// excludeShallow
 					excludeShallow: [],
 
-					optimize: 'uglify2',
+					optimize: 'none',
 
 					pragmas: {
 						exclude: true,
@@ -136,7 +136,7 @@ module.exports = function (grunt) {
 					// module name
 					name: 'database',
 					// output here
-					out: './built/database.dev.js',
+					out: './built/database.min.js',
 					// config file
 					mainConfigFile: 'amdconfig.js',
 
@@ -150,7 +150,7 @@ module.exports = function (grunt) {
 					// excludeShallow
 					excludeShallow: [],
 
-					optimize: 'none',
+					optimize: 'uglify2',
 
 					pragmas: {
 						exclude: true,

@@ -86,7 +86,7 @@
         },
         {
             "file": "src/__database/query-object/exec.js",
-            "line": 39,
+            "line": 38,
             "description": "Syncs the database then does a clientExec.",
             "itemtype": "method",
             "name": "exec",
@@ -94,7 +94,7 @@
         },
         {
             "file": "src/__database/query-object/exec.js",
-            "line": 61,
+            "line": 60,
             "description": "Runs 'database.query',\nchecks for query meta attributes.\n\nIf a sort is required, calls the database 'multisort' method.\nRuns database.query using the cursor's criteria hash and a projection object.\n\nIf a skip is defined, use the Lazy object's rest() method.\nIf a limit is defined, use Lazy object's take() method.",
             "itemtype": "method",
             "name": "clientExec",

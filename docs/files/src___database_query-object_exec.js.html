@@ -111,14 +111,13 @@ define(function (require, exports, module) {
 
 		var defer = q.defer(),
 			meta = this.meta(),
+			criteria = this.criteria,
 			loaded = this.clientExec(&#x27;id&#x27;).toArray(),
 
 			// build the requestData:
-			requestData = {
-				meta: meta,
-				loaded: loaded,
-				criteria: this.criteria
-			};
+			requestData = { loaded: loaded };
+
+			_.assign(requestData, meta, criteria);
 
 		this.database.load(requestData, xhrOptions)
 			.then(_.partial(defer.resolve, this));
